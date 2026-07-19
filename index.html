@@ -168,33 +168,7 @@ h2 i{color:var(--viridian)}
 .framework-step p{font-size:14px;line-height:1.6;color:var(--silhouette)}
 
 /* ---------- about: the silhouette room ---------- */
-.about{
-  position:relative;
-  isolation:isolate;
-  overflow:hidden;
-  background:var(--silhouette);
-  color:var(--parchment);
-}
-.about::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  z-index:-2;
-  background-image:url('background-seagrass-silhouette-v2.webp');
-  background-size:400px 400px;
-  background-repeat:repeat;
-  background-position:center top;
-  opacity:.22;
-  pointer-events:none;
-}
-.about::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  z-index:-1;
-  background:rgba(69,63,59,.18);
-  pointer-events:none;
-}
+.about{background:var(--silhouette);color:var(--parchment)}
 .about .tag{color:var(--brass-bright)}
 .about h2{color:var(--parchment)}
 .about h2 i{color:var(--brass-bright)}
