@@ -17,6 +17,7 @@
   --viridian-surface:#2B7F6C; /* viridian SURFACE role — thesis, AI cell, buttons; text on it is #FFF only */
   --viridian-deep:#0B463C;
   --silhouette:#57504C;     /* 17% — warm tailored neutral (BM AF-655) */
+  --silhouette-frame-mat:#3D3835; /* 30% darker than --silhouette — portrait frame mat only */
   --silhouette-deep:#453F3B;
   --mist:#CBD8D2;           /* 8%  — panels & separation */
   --brass:#B49A63;          /* 3%  — rules & decoration ONLY */
@@ -150,37 +151,11 @@ h2 i{color:var(--viridian)}
 /* ---------- how: mist panels ---------- */
 .how{background:var(--ivory)}
 .how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.how-cell{
-  position:relative;
-  isolation:isolate;
-  overflow:hidden;
-  background:var(--mist);
-  padding:38px 32px;
-  border-radius:2px;
-}
-.how-cell::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  z-index:-1;
-  background-image:url('background-mineral-mist.webp');
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
-  opacity:.10;
-  pointer-events:none;
-}
+.how-cell{background:var(--mist);padding:38px 32px;border-radius:2px}
 .how-cell .tag{margin-bottom:18px;display:block;color:var(--brass-text)}
 .how-cell h3{font-family:var(--display);font-optical-sizing:auto;font-weight:600;font-size:21px;margin-bottom:12px;line-height:1.25;color:var(--silhouette)}
 .how-cell p{font-size:15px;color:var(--silhouette);line-height:1.65}
-.how-cell.ai-cell{
-  background:var(--viridian-surface);
-  border-radius:2px;
-}
-.how-cell.ai-cell::before{
-  background-image:url('background-viridian-metal-clean.webp');
-  opacity:.10;
-}
+.how-cell.ai-cell{background:var(--viridian-surface);border-radius:2px}
 .how-cell.ai-cell .tag{color:#FFFFFF}
 .how-cell.ai-cell h3{color:#FFFFFF}
 .how-cell.ai-cell p{color:#FFFFFF}
@@ -228,7 +203,8 @@ h2 i{color:var(--viridian)}
 .about-grid p b{color:#FFFFFF;font-weight:600}
 .timeline{border-top:1px solid var(--line-dark)}
 .portrait{position:relative;margin-bottom:40px}
-.portrait img{display:block;width:100%;height:auto;border-radius:2px;border:1px solid var(--brass)}
+.portrait .frame{padding:14px;background:var(--silhouette-frame-mat);border:1px solid var(--brass);border-radius:2px;box-shadow:0 24px 48px -12px rgba(0,0,0,.45),0 8px 20px -8px rgba(0,0,0,.35)}
+.portrait img{display:block;width:100%;height:auto;border-radius:1px}
 .portrait figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--parchment-soft);margin-top:18px}
 .t-row{display:grid;grid-template-columns:150px 1fr;gap:22px;padding:20px 0;border-bottom:1px solid var(--line-dark)}
 .t-row .yrs{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--parchment-soft);padding-top:4px}
@@ -267,6 +243,9 @@ footer{
 
 /* ---------- reveal ---------- */
 .seal{display:block;width:64px;height:auto;margin:84px auto 0}
+.seal.reveal{opacity:0;transform:scale(.8) rotate(-10deg);transition:opacity 1.1s cubic-bezier(.19,1,.22,1),transform 1.1s cubic-bezier(.19,1,.22,1)}
+.seal.reveal.in{opacity:1;transform:scale(1) rotate(0)}
+@media (prefers-reduced-motion:reduce){.seal.reveal{opacity:1;transform:none;transition:none}}
 .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
 .reveal.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
@@ -550,7 +529,9 @@ footer{
       </div>
       <div>
         <figure class="portrait">
-          <img src="portrait-tom-pepe-2026-d.webp" alt="Tom Pepe — smiling headshot in a dark textured blazer, standing before deep viridian wallpaper patterned with hawks and blossoms" width="900" height="900">
+          <div class="frame">
+            <img src="portrait-tom-pepe-2026-d.webp" alt="Tom Pepe — smiling headshot in a dark textured blazer, standing before deep viridian wallpaper patterned with hawks and blossoms" width="900" height="900">
+          </div>
           <figcaption>Tom Pepe · 2026 · Photograph · backdrop composited with AI</figcaption>
         </figure>
         <div class="timeline">
@@ -578,7 +559,7 @@ footer{
       <a class="btn btn-primary" href="mailto:tom@tompepe.com">Email tom@tompepe.com</a>
       <a class="btn btn-ghost" href="https://www.linkedin.com/in/tompepe" target="_blank" rel="noopener">LinkedIn ↗</a>
     </div>
-    <img class="seal" src="hawk-eye-seal.webp" alt="Faceted brass and viridian medallion — the hawk-eye seal" width="144" height="144" loading="lazy">
+    <img class="seal reveal" src="hawk-eye-seal.webp" alt="Faceted brass and viridian medallion — the hawk-eye seal" width="144" height="144" loading="lazy">
   </div>
 </section>
 </main>
