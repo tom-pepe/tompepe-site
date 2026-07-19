@@ -151,6 +151,14 @@ h2 i{color:var(--viridian)}
 .how-cell.ai-cell .tag{color:#FFFFFF}
 .how-cell.ai-cell h3{color:#FFFFFF}
 .how-cell.ai-cell p{color:#FFFFFF}
+.framework{background:var(--mist)}
+.framework-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(15,91,78,.22);border:1px solid rgba(15,91,78,.22)}
+.framework-step{background:var(--ivory);padding:30px 24px;min-height:220px}
+.framework-step .n{font-family:var(--mono);font-size:11px;color:var(--brass-text);letter-spacing:.12em}
+.framework-step h3{font-family:var(--display);font-size:21px;line-height:1.2;margin:16px 0 10px;color:var(--viridian)}
+.framework-step p{font-size:14px;line-height:1.6;color:var(--silhouette)}
+@media(max-width:980px){.framework-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.framework-grid{grid-template-columns:1fr}}
 
 /* ---------- about: the silhouette room ---------- */
 .about{background:var(--silhouette);color:var(--parchment)}
@@ -233,6 +241,7 @@ footer{
   <div class="wrap nav-inner">
     <a class="brand" href="#top"><svg width="21" height="21" viewBox="0 0 48 48" aria-hidden="true" style="vertical-align:-4px;margin-right:9px"><path class="vane" d="M26 5 C36 13 38 27 27 42 C21 33 18 15 26 5 Z" fill="#0F5B4E"/><path d="M27 42 C25 30 25 15 26 5" fill="none" stroke="#F4F0E8" stroke-width="1.8"/><path d="M27 42 L25 47" stroke="#B49A63" stroke-width="2.8" stroke-linecap="round"/></svg>Tom <i>Pepe</i></a>
     <div class="nav-links">
+      <a href="#framework">Framework</a>
       <a href="#work">Selected Work</a>
       <a href="#how">How I Work</a>
       <a href="#about">About</a>
@@ -280,6 +289,22 @@ footer{
     <div class="thesis-side">
       <p>Most marketing organizations rebuild the same campaign over and over. The teams I've led stopped doing that: we built platforms, automated the repeatable work, governed the brand centrally, and measured everything — so creative energy went to the problems that actually deserved it.</p>
       <p>AI hasn't changed that thesis — it has accelerated it. The advantage was never knowing more tools than the next marketer. It's holding four disciplines at once: <b>marketing strategy, operational design, executive communication, and change leadership.</b> Tools get commoditized in a quarter. That combination doesn't.</p>
+    </div>
+  </div>
+</section>
+
+<section id="framework" class="framework reveal">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>How I make it <i>compound</i></h2>
+      <p class="tag">The five-step method behind every case below</p>
+    </div>
+    <div class="framework-grid">
+      <div class="framework-step"><span class="n">01</span><h3>See the fragmentation</h3><p>Find where brand, content, and customer experience have drifted into disconnected efforts — different tools, different owners, no shared system.</p></div>
+      <div class="framework-step"><span class="n">02</span><h3>Design the system</h3><p>Establish the governance, platform architecture, and ownership model before a single campaign gets built on top of it.</p></div>
+      <div class="framework-step"><span class="n">03</span><h3>Build the experience</h3><p>Turn the system into the actual work — identity, platforms, content, and the customer- and partner-facing journeys people touch.</p></div>
+      <div class="framework-step"><span class="n">04</span><h3>Mobilize the team</h3><p>Align leadership, train the people who'll run it, and communicate the change until the new way of working is just the way of working.</p></div>
+      <div class="framework-step"><span class="n">05</span><h3>Measure and refine</h3><p>Instrument what matters, use the evidence to adjust the system, and let performance — not opinion — decide what changes next.</p></div>
     </div>
   </div>
 </section>
@@ -370,7 +395,7 @@ footer{
         <h3>Zero LGBTQ+ representation to a company-wide tradition, in three years.</h3>
         <p><b>Problem:</b> USLI&rsquo;s DEI Team was chartered to bring education to the company, but there were no employee resource groups and no LGBTQ+ programming of any kind &mdash; no event, ever, had marked Pride.</p>
         <p><b>Decision:</b> Co-propose and co-produce the company&rsquo;s first-ever Pride program with a fellow DEI Team member, scaling it deliberately year over year: an online trivia and cocktail night to start, then an office trivia event with branch offices joining virtually, building to a flagship year built around a first-ever flag-raising ceremony, a Rainbow Run and Walk 5K held simultaneously at the home office and every branch, a company-wide Lavender Spirit Day with a walk-through educational gallery, and a fireside chat with Traliant on the shifting legal landscape for LGBTQ+ and trans rights.</p>
-        <p><b>Outcome:</b> The company went from no LGBTQ+ representation to a visible, well-attended annual tradition with real allyship participation. When my USLI tenure ended before year four&rsquo;s events, my co-producer ran the 5K and Lavender Lunch alone rather than let the program lapse.</p>
+        <p><b>Outcome:</b> The company went from no LGBTQ+ representation to a visible, well-attended annual tradition with real allyship participation &mdash; built as a system from the first year, so it could be carried forward by the community it created, not just by its founders.</p>
       </div>
       <div class="case-metrics">
         <div class="metric"><span class="val">2023</span><span class="cap">Launched &mdash; first Pride program at USLI</span></div>
@@ -460,8 +485,8 @@ footer{
         </figure>
         <div class="timeline">
         <div class="t-row"><span class="yrs">2025 — Present</span><div class="role"><b>Independent Projects</b><span>AI Marketing Transformation</span></div></div>
-        <div class="t-row"><span class="yrs">2009 — 2026</span><div class="role"><b>USLI, A Berkshire Hathaway Company</b><span>Second Vice President (2014–2026) &amp; Assistant Vice President (2009–2014) — Senior Brand Marketing Coordinator; Director of Brand Strategy; Director of Design; Director of Design &amp; Social Media; Director of Graphics</span></div></div>
-        <div class="t-row"><span class="yrs">2008</span><div class="role"><b>Vanguard</b><span>Interaction Designer, User-Centered Design</span></div></div>
+        <div class="t-row"><span class="yrs">2009 — 2026</span><div class="role"><b>USLI, A Berkshire Hathaway Company</b><span>Second Vice President (2014–2026) &amp; Assistant Vice President (2009–2014) — Senior Brand Marketing Coordinator; Director of Brand Strategy; Director of Design; Director of Design &amp; Social Media; Director of Graphics — Wayne, PA</span></div></div>
+        <div class="t-row"><span class="yrs">2008</span><div class="role"><b>Vanguard</b><span>Interaction Designer, User-Centered Design — Malvern, PA</span></div></div>
         <div class="t-row"><span class="yrs">2003 — 2008</span><div class="role"><b>IDS Scheer, Consulting &amp; Software</b><span>Global Web Marketing Manager — U.S. &amp; Germany</span></div></div>
         <div class="t-row"><span class="yrs">2001 — 2003</span><div class="role"><b>United AG Producers</b><span>Director of Multimedia — Plymouth Meeting, PA</span></div></div>
         <div class="t-row"><span class="yrs">1998 — 1999</span><div class="role"><b>Avence Multimedia</b><span>Public Relations Assistant &amp; Translator — Paris, France</span></div></div>
