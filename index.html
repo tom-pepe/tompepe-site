@@ -237,6 +237,7 @@ footer{
     gtag('js', new Date());
     gtag('config', 'G-5LDCT6K4R7');
   </script>
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
 </head>
 <body>
 
@@ -525,7 +526,7 @@ footer{
 <script>
 const io = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
-},{threshold:.1});
+},{threshold:0, rootMargin:'0px 0px -5% 0px'});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 </script>
 </body>
