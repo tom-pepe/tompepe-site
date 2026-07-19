@@ -67,6 +67,11 @@ nav{
 .nav-links{display:flex;gap:30px;align-items:center}
 .nav-links a{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:var(--silhouette);transition:color .2s}
 .nav-links a:hover{color:var(--umber)}
+.nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:34px;height:34px;background:none;border:none;cursor:pointer;padding:0}
+.nav-toggle span{display:block;width:100%;height:2px;background:var(--silhouette);transition:transform .25s ease,opacity .2s ease}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 .nav-cta{border:1px solid var(--viridian);padding:9px 18px;color:var(--viridian)!important;transition:all .2s}
 .nav-cta:hover{background:var(--umber);border-color:var(--umber);color:var(--ivory)!important}
 
@@ -225,7 +230,11 @@ footer{
   .t-row{grid-template-columns:1fr;gap:6px;padding:16px 0}
   .t-row .yrs{padding-top:0}
   .thesis-cols,.about-grid{grid-template-columns:1fr;gap:42px}
-  .nav-links a:not(.nav-cta){display:none}
+  .nav-toggle{display:flex}
+  .nav-links{position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:var(--ivory);border-bottom:1px solid var(--line-light);max-height:0;overflow:hidden;opacity:0;transition:max-height .3s ease,opacity .25s ease}
+  .nav-links.open{max-height:400px;opacity:1}
+  .nav-links a{padding:16px 32px;border-bottom:1px solid var(--line-light)}
+  .nav-links a.nav-cta{border:1px solid var(--viridian);margin:16px 32px;padding:12px 18px;text-align:center}
   header{padding:84px 0 72px}
   section{padding:80px 0}
   .hero-meta div{border-right:none;margin-right:0;padding-right:0;width:50%}
@@ -246,13 +255,16 @@ footer{
 <nav>
   <div class="wrap nav-inner">
     <a class="brand" href="#top"><svg width="21" height="21" viewBox="0 0 48 48" aria-hidden="true" style="vertical-align:-4px;margin-right:9px"><path class="vane" d="M26 5 C36 13 38 27 27 42 C21 33 18 15 26 5 Z" fill="#0F5B4E"/><path d="M27 42 C25 30 25 15 26 5" fill="none" stroke="#F4F0E8" stroke-width="1.8"/><path d="M27 42 L25 47" stroke="#B49A63" stroke-width="2.8" stroke-linecap="round"/></svg>Tom <i>Pepe</i></a>
-    <div class="nav-links">
+    <div class="nav-links" id="navLinks">
       <a href="#framework">Framework</a>
       <a href="#work">Selected Work</a>
       <a href="#how">How I Work</a>
       <a href="#about">About</a>
       <a class="nav-cta" href="mailto:tom@tompepe.com">Get in Touch</a>
     </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
@@ -498,6 +510,7 @@ footer{
         <div class="t-row"><span class="yrs">1998 — 1999</span><div class="role"><b>Avence Multimedia</b><span>Public Relations Assistant &amp; Translator — Paris, France</span></div></div>
         <div class="t-row"><span class="yrs">Education</span><div class="role"><b>Millersville University of Pennsylvania</b><span>B.S., Communication Studies &amp; French</span></div></div>
         <div class="t-row"><span class="yrs"></span><div class="role"><b>Université Lumière Lyon II</b><span>Certificate, French Language &amp; History — Lyon, France</span></div></div>
+        <div class="t-row"><span class="yrs">2025</span><div class="role"><b>HubSpot Academy</b><span>Digital Marketing Certification</span></div></div>
         <div class="t-row"><span class="yrs">2026</span><div class="role"><b>Stanford Continuing Studies</b><span>Agentic AI coursework · Neuroscience of Leadership &amp; Emotional Mastery (in progress)</span></div></div>
         </div>
       </div>
@@ -532,6 +545,19 @@ const io = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
 },{threshold:0, rootMargin:'0px 0px -5% 0px'});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+navToggle.addEventListener('click', ()=>{
+  const open = navLinks.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+});
+navLinks.querySelectorAll('a').forEach(a=>{
+  a.addEventListener('click', ()=>{
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded','false');
+  });
+});
 </script>
 </body>
 </html>
