@@ -152,15 +152,22 @@ h2 i{color:var(--viridian)}
 
 /* ---------- cases ---------- */
 .cases{background:var(--ivory)}
-.case{display:grid;grid-template-columns:210px 1fr 250px;gap:52px;padding:60px 0;border-top:1px solid var(--line-light)}
-.case:first-of-type{border-top:none;padding-top:0}
-.case-id{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--silhouette);line-height:2.1}
-.plate{display:block;width:100%;height:auto;border-radius:2px;margin-bottom:20px}
-.case-id b{display:block;color:var(--viridian);font-weight:500}
-.case-id .brass-rule{margin-top:14px}
-.case h3{font-family:var(--display);font-optical-sizing:auto;font-weight:560;font-size:27px;line-height:1.22;margin-bottom:20px;max-width:24ch;color:var(--silhouette)}
 .case-body p{color:var(--silhouette);max-width:58ch;margin-bottom:14px;font-size:16.5px}
 .case-body p b{color:var(--viridian);font-weight:600}
+.case{border-top:1px solid var(--line-light);padding:0}
+.case:first-of-type{border-top:none}
+.case summary{display:flex;align-items:center;gap:28px;padding:30px 0;cursor:pointer;list-style:none}
+.case summary::-webkit-details-marker{display:none}
+.case summary .plate{width:120px;height:120px;flex-shrink:0}
+.case summary .sum-text{flex:1;min-width:0}
+.case summary .case-id{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--silhouette);line-height:1.6;display:block}
+.case summary h3{font-family:var(--display);font-optical-sizing:auto;font-weight:600;font-size:19px;line-height:1.3;color:var(--silhouette-deep);margin-top:4px}
+.case .chevron{flex-shrink:0;width:13px;height:13px;border-right:1.5px solid var(--brass);border-bottom:1.5px solid var(--brass);transform:rotate(45deg);transition:transform .3s ease;margin-right:6px}
+.case[open] .chevron{transform:rotate(-135deg)}
+.case-detail-wrap{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s cubic-bezier(.4,0,.2,1)}
+.case[open] .case-detail-wrap{grid-template-rows:1fr}
+.case-detail-inner{overflow:hidden}
+.case-detail{display:grid;grid-template-columns:1fr 250px;gap:52px;padding:4px 0 44px 148px}
 .case-metrics{display:flex;flex-direction:column;gap:28px}
 .metric{border-left:2px solid var(--viridian);padding-left:18px}
 .metric .val{font-family:var(--display);font-weight:640;font-size:36px;line-height:1;color:var(--viridian)}
@@ -169,14 +176,27 @@ h2 i{color:var(--viridian)}
 /* ---------- how: mist panels ---------- */
 .how{background:var(--ivory)}
 .how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.how-cell{background:var(--mist);padding:38px 32px;border-radius:2px}
-.how-cell .tag{margin-bottom:18px;display:block;color:var(--brass-text)}
-.how-cell h3{font-family:var(--display);font-optical-sizing:auto;font-weight:600;font-size:21px;margin-bottom:12px;line-height:1.25;color:var(--silhouette)}
-.how-cell p{font-size:15px;color:var(--silhouette);line-height:1.65}
-.how-cell.ai-cell{background:var(--viridian-surface);border-radius:2px}
+.how-radio{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
+.how-cell{display:block;background:var(--mist);padding:26px 28px;border-radius:2px;cursor:pointer;border-left:3px solid transparent;transition:border-color .25s ease,background .25s ease}
+.how-cell .tag{margin-bottom:10px;display:block;color:var(--brass-text)}
+.how-cell h3{font-family:var(--display);font-optical-sizing:auto;font-weight:600;font-size:19px;line-height:1.25;color:var(--silhouette)}
+.how-cell.ai-cell{background:var(--viridian-surface)}
 .how-cell.ai-cell .tag{color:#FFFFFF}
 .how-cell.ai-cell h3{color:#FFFFFF}
-.how-cell.ai-cell p{color:#FFFFFF}
+#how-tab-01:checked ~ .how-grid label[for="how-tab-01"],
+#how-tab-02:checked ~ .how-grid label[for="how-tab-02"],
+#how-tab-03:checked ~ .how-grid label[for="how-tab-03"],
+#how-tab-04:checked ~ .how-grid label[for="how-tab-04"],
+#how-tab-05:checked ~ .how-grid label[for="how-tab-05"],
+#how-tab-06:checked ~ .how-grid label[for="how-tab-06"]{border-left-color:var(--brass)}
+.how-panels{background:var(--ivory);border:1px solid var(--line-light);border-radius:2px;padding:36px 40px;margin-top:22px;display:flex;justify-content:center}
+.how-panel{display:none;font-size:16px;color:var(--silhouette);line-height:1.7;max-width:70ch;text-align:left}
+#how-tab-01:checked ~ .how-panels #panel-01,
+#how-tab-02:checked ~ .how-panels #panel-02,
+#how-tab-03:checked ~ .how-panels #panel-03,
+#how-tab-04:checked ~ .how-panels #panel-04,
+#how-tab-05:checked ~ .how-panels #panel-05,
+#how-tab-06:checked ~ .how-panels #panel-06{display:block}
 .framework{background:var(--mist)}
 .framework-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(15,91,78,.22);border:1px solid rgba(15,91,78,.22)}
 .framework-step{background:var(--ivory);padding:30px 24px;min-height:220px}
@@ -194,6 +214,14 @@ h2 i{color:var(--viridian)}
 .about-grid p{color:var(--parchment);margin-bottom:18px;max-width:52ch;font-size:16.5px;font-weight:400}
 .about-grid p b{color:#FFFFFF;font-weight:600}
 .timeline{border-top:1px solid var(--line-dark)}
+.tl-radio{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
+.timeline-tabs{display:flex;gap:28px;padding-top:24px}
+.timeline-tabs label{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--parchment-soft);padding-bottom:14px;cursor:pointer;border-bottom:2px solid transparent;transition:color .2s ease,border-color .2s ease}
+#tl-tab-career:checked ~ .timeline-tabs label[for="tl-tab-career"]{color:var(--brass-bright);border-bottom-color:var(--brass)}
+#tl-tab-education:checked ~ .timeline-tabs label[for="tl-tab-education"]{color:var(--brass-bright);border-bottom-color:var(--brass)}
+.tl-group{display:none}
+#tl-tab-career:checked ~ .tl-group.tl-career{display:block}
+#tl-tab-education:checked ~ .tl-group.tl-education{display:block}
 .portrait{position:relative;margin-bottom:40px}
 .portrait .frame{padding:14px;background:var(--silhouette-frame-mat);border:1px solid var(--brass);border-radius:2px;box-shadow:0 24px 48px -12px rgba(0,0,0,.45),0 8px 20px -8px rgba(0,0,0,.35)}
 .portrait img{display:block;width:100%;height:auto;border-radius:1px}
@@ -238,13 +266,16 @@ footer{
 .seal.reveal{opacity:0;transform:scale(.8) rotate(-10deg);transition:opacity 1.1s cubic-bezier(.19,1,.22,1),transform 1.1s cubic-bezier(.19,1,.22,1)}
 .seal.reveal.in{opacity:1;transform:scale(1) rotate(0)}
 @media (prefers-reduced-motion:reduce){.seal.reveal{opacity:1;transform:none;transition:none}}
+@media (prefers-reduced-motion:reduce){.case-detail-wrap,.case .chevron{transition:none}}
 .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
 .reveal.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 
 /* ---------- responsive ---------- */
 @media (max-width:920px){
-  .case{grid-template-columns:1fr;gap:26px;padding:46px 0}
+  .case summary{padding:22px 0;gap:18px}
+  .case summary .plate{width:80px;height:80px}
+  .case-detail{grid-template-columns:1fr;gap:22px;padding-left:0}
   .case-metrics{flex-direction:row;flex-wrap:wrap;gap:34px}
   .how-grid{grid-template-columns:1fr}
   .framework-grid{grid-template-columns:1fr}
@@ -357,108 +388,166 @@ footer{
       <p class="tag">Problem / Decision / Outcome</p>
     </div>
 
-    <article class="case">
-      <div class="case-id"><img class="plate" src="plate-trellis.webp" alt="Pochoir stencil illustration of a garden trellis with vines woven through its lattice, a single blossom picked out in brass" width="800" height="800" loading="lazy">Case 01<b>Partner Ecosystem Platform</b>USLI, A Berkshire Hathaway Company<span class="brass-rule"></span></div>
-      <div class="case-body">
-        <h3>A partner portal stewarded for fifteen years, across three roles.</h3>
-        <p><b>Problem:</b> 200,000+ agents and brokers, and over a million policyholders, needed curated business resources the company couldn't produce alone, and third-party content without governance is a brand risk.</p>
-        <p><b>Decision:</b> Design and launch the <a class="inline-link" href="https://www.bizresourcecenter.com/" target="_blank" rel="noopener">Business Resource Center</a> as a managed ecosystem: owning vendor and partner curation, contract negotiation, content governance, SEO, and the integrated marketing strategy around it. Then expand it through every role that followed: a Spanish-language edition, a WordPress relaunch, a Canadian expansion.</p>
-        <p><b>Outcome:</b> A durable marketing asset that outlasted campaigns, teams, and platform migrations: the structural blueprint for alliance and ecosystem marketing.</p>
+    <details class="case" open>
+      <summary>
+        <img class="plate" src="plate-key.webp" alt="Pochoir stencil illustration of an ornate skeleton key mid-turn in a keyhole, its bow a geometric rosette, the lock's brass mechanism visible through the plate" width="120" height="120" loading="lazy">
+        <div class="sum-text">
+          <span class="case-id">Case 01 &middot; Digital Broker Experience &middot; USLI, A Berkshire Hathaway Company</span>
+          <h3>A 15-year-old broker/agent quoting platform, replaced without losing an active user.</h3>
+        </div>
+        <span class="chevron" aria-hidden="true"></span>
+      </summary>
+      <div class="case-detail-wrap">
+        <div class="case-detail-inner">
+          <div class="case-detail">
+            <div class="case-body">
+              <p><b>Problem:</b> The broker and agent workspace hadn't been substantially updated in over fifteen years, and no one owned the customer experience, brand, or migration strategy for the new quoting engine already in development.</p>
+        <p><b>Decision:</b> Direct the portal experience, brand, accessibility, and go-to-market for USLI-SNAP, partnering with underwriting and IT on the quoting engine itself. Design a migration-first launch: email journeys, webinars, and internal training built around awareness, activation, and retiring the legacy system.</p>
+        <p><b>Outcome:</b> Migrated every broker and agent active in the prior two years and retired inactive legacy accounts outright. A/B-tested messaging produced an estimated 20%+ adoption lift, delivering a more accessible experience without losing the active book of business.</p>
+            </div>
+            <div class="case-metrics">
+              <div class="metric"><span class="val">2022</span><span class="cap">USLI-SNAP launched</span></div>
+        <div class="metric"><span class="val">100%</span><span class="cap">Active brokers &amp; agents migrated</span></div>
+        <div class="metric"><span class="val">20%+</span><span class="cap">Est. adoption lift, A/B tested</span></div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="case-metrics">
-        <div class="metric"><span class="val">175%</span><span class="cap">U.S. usage growth / 18 mo</span></div>
+    </details>
+
+    <details class="case">
+      <summary>
+        <img class="plate" src="plate-trellis.webp" alt="Pochoir stencil illustration of a garden trellis with vines woven through its lattice, a single blossom picked out in brass" width="120" height="120" loading="lazy">
+        <div class="sum-text">
+          <span class="case-id">Case 02 &middot; Partner Ecosystem Platform &middot; USLI, A Berkshire Hathaway Company</span>
+          <h3>A partner portal stewarded for fifteen years, across three roles.</h3>
+        </div>
+        <span class="chevron" aria-hidden="true"></span>
+      </summary>
+      <div class="case-detail-wrap">
+        <div class="case-detail-inner">
+          <div class="case-detail">
+            <div class="case-body">
+              <p><b>Problem:</b> 200,000+ agents and brokers, and over a million policyholders, needed curated loss control and operating resources the company couldn't produce alone: ungoverned third-party content is a brand risk.</p>
+        <p><b>Decision:</b> Design and launch the <a class="inline-link" href="https://www.bizresourcecenter.com/" target="_blank" rel="noopener">Business Resource Center</a> as a managed ecosystem: vendor curation, contract negotiation, content governance, and SEO. Then expand it through every role that followed: a Spanish-language edition, a WordPress relaunch, a Canadian expansion.</p>
+        <p><b>Outcome:</b> A durable marketing asset that outlasted campaigns, teams, and platform migrations: the structural blueprint for alliance and ecosystem marketing.</p>
+            </div>
+            <div class="case-metrics">
+              <div class="metric"><span class="val">175%</span><span class="cap">U.S. usage growth / 18 mo</span></div>
         <div class="metric"><span class="val">40%</span><span class="cap">Vendor &amp; resource engagement lift</span></div>
         <div class="metric"><span class="val">2</span><span class="cap">Countries, two languages</span></div>
+            </div>
+          </div>
+        </div>
       </div>
-    </article>
+    </details>
 
-    <article class="case">
-      <div class="case-id"><img class="plate" src="plate-prism.webp" alt="Pochoir stencil illustration of wavering lines entering a prism and emerging as one strong beam, the prism face in brass" width="800" height="800" loading="lazy">Case 02<b>Brand Repositioning</b>USLI, A Berkshire Hathaway Company<span class="brass-rule"></span></div>
-      <div class="case-body">
-        <h3>Consolidating fragmented channels into one campaign architecture.</h3>
-        <p><b>Problem:</b> Digital efforts were scattered across channels and teams: each competent, none compounding.</p>
-        <p><b>Decision:</b> Lead an enterprise-wide repositioning through a single omni-channel architecture: unified messaging, integrated email journeys, and performance dashboards built in HubSpot and Google Analytics, so every channel reported into one view of the funnel.</p>
+    <details class="case">
+      <summary>
+        <img class="plate" src="plate-prism.webp" alt="Pochoir stencil illustration of wavering lines entering a prism and emerging as one strong beam, the prism face in brass" width="120" height="120" loading="lazy">
+        <div class="sum-text">
+          <span class="case-id">Case 03 &middot; Brand Repositioning &middot; USLI, A Berkshire Hathaway Company</span>
+          <h3>Consolidating fragmented channels into one campaign architecture.</h3>
+        </div>
+        <span class="chevron" aria-hidden="true"></span>
+      </summary>
+      <div class="case-detail-wrap">
+        <div class="case-detail-inner">
+          <div class="case-detail">
+            <div class="case-body">
+              <p><b>Problem:</b> Digital efforts were scattered across channels and teams: each competent, none compounding.</p>
+        <p><b>Decision:</b> Lead an enterprise-wide repositioning through a single omni-channel architecture: unified messaging, integrated email journeys, and performance dashboards so every channel reported into one view. Tools: MailChimp, HubSpot, Google Analytics.</p>
         <p><b>Outcome:</b> Engagement and submissions grew because the system did, not because any single campaign got lucky.</p>
-      </div>
-      <div class="case-metrics">
-        <div class="metric"><span class="val">460%</span><span class="cap">Digital engagement growth / 1 yr</span></div>
+            </div>
+            <div class="case-metrics">
+              <div class="metric"><span class="val">460%</span><span class="cap">Digital engagement growth / 1 yr</span></div>
         <div class="metric"><span class="val">250%</span><span class="cap">Email-driven submissions</span></div>
+            </div>
+          </div>
+        </div>
       </div>
-    </article>
+    </details>
 
-    <article class="case">
-      <div class="case-id"><img class="plate" src="plate-key.webp" alt="Pochoir stencil illustration of an ornate skeleton key mid-turn in a keyhole, its bow a geometric rosette, the lock's brass mechanism visible through the plate" width="800" height="800" loading="lazy">Case 03<b>Digital Broker Experience</b>USLI, A Berkshire Hathaway Company<span class="brass-rule"></span></div>
-      <div class="case-body">
-        <h3>A 15-year-old quoting workflow, replaced without losing a broker.</h3>
-        <p><b>Problem:</b> The broker and agent quoting workspace hadn&rsquo;t been substantially updated in over fifteen years. A new quoting engine was in development, but no one owned the customer experience, brand, accessibility, or migration strategy for the brokers who&rsquo;d have to move onto it.</p>
-        <p><b>Decision:</b> Direct the portal experience, brand, accessibility, and go-to-market workstreams for USLI-SNAP, partnering with the underwriting and IT teams building the quoting engine itself. Design a migration-first launch &mdash; segmented email journeys, webinars, internal training, and employee/product ambassadors &mdash; built around awareness, activation, and migration ahead of legacy retirement.</p>
-        <p><b>Outcome:</b> Migrated every broker active in the prior two years and secured approval to retire inactive legacy accounts outright. A/B-tested adoption messaging produced an estimated 20%+ lift, delivering a more accessible, intuitive experience without losing the active book of business through the cutover.</p>
-      </div>
-      <div class="case-metrics">
-        <div class="metric"><span class="val">2022</span><span class="cap">USLI-SNAP launched</span></div>
-        <div class="metric"><span class="val">100%</span><span class="cap">Active brokers migrated</span></div>
-        <div class="metric"><span class="val">20%+</span><span class="cap">Est. adoption lift, A/B tested</span></div>
-      </div>
-    </article>
-
-    <article class="case">
-      <div class="case-id"><img class="plate" src="plate-loom.webp" alt="Pochoir stencil illustration of a hand loom with warp threads under tension and the weaver's shuttle in brass" width="800" height="800" loading="lazy">Case 04<b>Marketing Infrastructure &amp; Automation</b>USLI, A Berkshire Hathaway Company<span class="brass-rule"></span></div>
-      <div class="case-body">
-        <h3>Replacing manual processes with self-service platforms.</h3>
-        <p><b>Problem:</b> Marketing delivery depended on IT queues and manual production: a ceiling on speed, and a $1M+ annual print bill.</p>
-        <p><b>Decision:</b> Build the infrastructure instead of the workaround: a white-label digital marketing platform, marketing automation from the company's first email service provider onward, self-service toolkits for the distribution network, and, most recently, AI-driven creative tools woven into the production workflow.</p>
+    <details class="case">
+      <summary>
+        <img class="plate" src="plate-loom.webp" alt="Pochoir stencil illustration of a hand loom with warp threads under tension and the weaver's shuttle in brass" width="120" height="120" loading="lazy">
+        <div class="sum-text">
+          <span class="case-id">Case 04 &middot; Marketing Infrastructure &amp; Automation &middot; USLI, A Berkshire Hathaway Company</span>
+          <h3>Replacing manual processes with self-service platforms.</h3>
+        </div>
+        <span class="chevron" aria-hidden="true"></span>
+      </summary>
+      <div class="case-detail-wrap">
+        <div class="case-detail-inner">
+          <div class="case-detail">
+            <div class="case-body">
+              <p><b>Problem:</b> Marketing delivery depended on IT queues and manual production: a ceiling on speed, innovation, and a $1M+ annual print bill.</p>
+        <p><b>Decision:</b> Build the infrastructure instead of the workaround: a white-label marketing platform, automation from the company's first email service provider onward, self-service templates and toolkits for the distribution network, and AI-driven creative tools woven into the workflow for seamless reporting.</p>
         <p><b>Outcome:</b> The team's capacity moved from production to strategy, and delivery got dramatically faster and cheaper.</p>
-      </div>
-      <div class="case-metrics">
-        <div class="metric"><span class="val">800%</span><span class="cap">Lead conversion growth</span></div>
+            </div>
+            <div class="case-metrics">
+              <div class="metric"><span class="val">800%</span><span class="cap">Lead conversion growth</span></div>
         <div class="metric"><span class="val">75%</span><span class="cap">Faster delivery times</span></div>
         <div class="metric"><span class="val">$1M→$100K</span><span class="cap">Annual print &amp; promo costs</span></div>
+            </div>
+          </div>
+        </div>
       </div>
-    </article>
+    </details>
 
-    <article class="case">
-      <div class="case-id"><img class="plate" src="plate-meridians.webp" alt="Pochoir stencil illustration of an armillary sphere, its meridians converging at a brass pole and finial" width="800" height="800" loading="lazy">Case 05<b>Global Web Consolidation</b>IDS Scheer, Consulting &amp; Software<span class="brass-rule"></span></div>
-      <div class="case-body">
-        <h3>Twenty-four country websites. One governed platform.</h3>
-        <p><b>Problem:</b> During rapid M&amp;A, 24 self-managed country sites meant 24 versions of the brand, 24 maintenance burdens, and no shared governance.</p>
-        <p><b>Decision:</b> Own the roadmap for a global CMS consolidation: aligning international stakeholders with competing priorities, coordinating with SAP and Microsoft partnership teams, and leading a team across the U.S. and Germany.</p>
+    <details class="case">
+      <summary>
+        <img class="plate" src="plate-meridians.webp" alt="Pochoir stencil illustration of an armillary sphere, its meridians converging at a brass pole and finial" width="120" height="120" loading="lazy">
+        <div class="sum-text">
+          <span class="case-id">Case 05 &middot; Global Web Consolidation &middot; IDS Scheer, Consulting &amp; Software</span>
+          <h3>Twenty-four country websites. One governed platform.</h3>
+        </div>
+        <span class="chevron" aria-hidden="true"></span>
+      </summary>
+      <div class="case-detail-wrap">
+        <div class="case-detail-inner">
+          <div class="case-detail">
+            <div class="case-body">
+              <p><b>Problem:</b> During rapid mergers and acquisitions, 24 self-managed country sites meant 24 versions of the brand, 24 maintenance burdens, and no shared governance.</p>
+        <p><b>Decision:</b> Own the roadmap for a global CMS consolidation: aligning international stakeholders with competing priorities, coordinating with the technology partnership team, and leading a team across the U.S. and Germany.</p>
         <p><b>Outcome:</b> One platform, consistent brand and user experience across every market, and sharply lower training and maintenance costs.</p>
+            </div>
+            <div class="case-metrics">
+              <div class="metric"><span class="val">24→1</span><span class="cap">Country sites consolidated</span></div>
+        <div class="metric"><span class="val">Global</span><span class="cap">Technology partnership coordination</span></div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="case-metrics">
-        <div class="metric"><span class="val">24→1</span><span class="cap">Country sites consolidated</span></div>
-        <div class="metric"><span class="val">Global</span><span class="cap">SAP &amp; Microsoft alliance coordination</span></div>
-      </div>
-    </article>
+    </details>
 
-    <article class="case">
-      <div class="case-id"><img class="plate" src="plate-lantern.webp" alt="Pochoir stencil illustration of an ornate hanging lantern, its glass panes etched with detail, a single warm brass flame glowing at its center" width="800" height="800" loading="lazy">Case 06<b>LGBTQ+ Pride Program</b>USLI, A Berkshire Hathaway Company<span class="brass-rule"></span></div>
-      <div class="case-body">
-        <h3>Zero LGBTQ+ representation to a company-wide tradition, in three years.</h3>
-        <p><b>Problem:</b> USLI&rsquo;s DEI Team was chartered to bring education to the company, but there were no employee resource groups and no LGBTQ+ programming of any kind &mdash; no event, ever, had marked Pride.</p>
-        <p><b>Decision:</b> Co-propose and co-produce the company&rsquo;s first-ever Pride program with a fellow DEI Team member, scaling it deliberately year over year: an online trivia and cocktail night to start, then an office trivia event with branch offices joining virtually, building to a flagship year built around a first-ever flag-raising ceremony, a Rainbow Run and Walk 5K held simultaneously at the home office and every branch, a company-wide Lavender Spirit Day with a walk-through educational gallery, and a fireside chat with Traliant on the shifting legal landscape for LGBTQ+ and trans rights.</p>
-        <p><b>Outcome:</b> The company went from no LGBTQ+ representation to a visible, well-attended annual tradition with real allyship participation &mdash; built as a system from the first year, so it could be carried forward by the community it created, not just by its founders.</p>
+    <details class="case">
+      <summary>
+        <img class="plate" src="plate-kaleidoscope.webp" alt="Pochoir stencil illustration of a handheld kaleidoscope, a geometric rosette of facets blooming from its end, the eyepiece ring in brass" width="120" height="120" loading="lazy">
+        <div class="sum-text">
+          <span class="case-id">Case 06 &middot; Culture &amp; Inclusion Programs &middot; USLI, A Berkshire Hathaway Company</span>
+          <h3>Two employee activation programs, one system: built to run without their founders.</h3>
+        </div>
+        <span class="chevron" aria-hidden="true"></span>
+      </summary>
+      <div class="case-detail-wrap">
+        <div class="case-detail-inner">
+          <div class="case-detail">
+            <div class="case-body">
+              <p><b>Problem:</b> USLI's DEI Team had no LGBTQ+ programming and no structured way to surface employee stories or culture moments. Both gaps sat on the same small team.</p>
+        <p><b>Decision:</b> Co-found two employee activation programs from inside the DEI Team: Pride, the company's first-ever LGBTQ+ program, launched 2023, growing to include a flag-raising ceremony, a 5K, educational resources and events, and a company-wide Spirit Day; and Kaleidoscope, an employee spotlight platform launched 2024, built around storytelling, educational resources, and a monthly email.</p>
+        <p><b>Outcome:</b> Over 200 Kaleidoscope employee spotlights published, a monthly email read company-wide, and a Pride tradition that grew to 100+ participants in its flagship year, both built as systems designed to run beyond their founders.</p>
+            </div>
+            <div class="case-metrics">
+              <div class="metric"><span class="val">2</span><span class="cap">Employee programs co-founded</span></div>
+        <div class="metric"><span class="val">200+</span><span class="cap">Kaleidoscope spotlights published</span></div>
+        <div class="metric"><span class="val">100+</span><span class="cap">Pride 5K/Walk participants, flagship year</span></div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="case-metrics">
-        <div class="metric"><span class="val">2023</span><span class="cap">Launched &mdash; first Pride program at USLI</span></div>
-        <div class="metric"><span class="val">100+</span><span class="cap">Home office 5K/Walk participants, flagship year</span></div>
-        <div class="metric"><span class="val">4</span><span class="cap">Consecutive years running</span></div>
-      </div>
-    </article>
+    </details>
 
-    <article class="case">
-      <div class="case-id"><img class="plate" src="plate-kaleidoscope.webp" alt="Pochoir stencil illustration of a handheld kaleidoscope, a geometric rosette of facets blooming from its end, the eyepiece ring in brass" width="800" height="800" loading="lazy">Case 07<b>Culture &amp; Inclusion Program</b>USLI, A Berkshire Hathaway Company<span class="brass-rule"></span></div>
-      <div class="case-body">
-        <h3>A workforce of 1,500 became the brand&rsquo;s most credible voice.</h3>
-        <p><b>Problem:</b> The company&rsquo;s culture of caring was real but under-told &mdash; employee stories surfaced ad hoc, cultural moments were celebrated inconsistently, and engagement depended on individual enthusiasm rather than durable structure.</p>
-        <p><b>Decision:</b> Co-found Kaleidoscope with fellow DEI team members in 2024 &mdash; an employee activation program built as a system rather than an events calendar: a recurring spotlight storytelling format, cultural programming, a resource library, and a monthly email franchise, with shared ownership designed to run beyond its founders.</p>
-        <p><b>Outcome:</b> 188 employee spotlights live within two years, a monthly email read across the company, and adoption now being built into new-hire onboarding to keep the pipeline growing. The program outlived my tenure &mdash; which was the design.</p>
-      </div>
-      <div class="case-metrics">
-        <div class="metric"><span class="val">188</span><span class="cap">Employee spotlights live</span></div>
-        <div class="metric"><span class="val">2024</span><span class="cap">Launched &mdash; still running</span></div>
-        <div class="metric"><span class="val">Onboarding</span><span class="cap">New-hire integration approved</span></div>
-      </div>
-    </article>
   </div>
 </section>
 
@@ -468,37 +557,48 @@ footer{
       <h2>How I <i>work</i></h2>
       <p class="tag">The Operating System</p>
     </div>
+
+    <input type="radio" name="how-tab" id="how-tab-01" class="how-radio" checked>
+    <input type="radio" name="how-tab" id="how-tab-02" class="how-radio">
+    <input type="radio" name="how-tab" id="how-tab-03" class="how-radio">
+    <input type="radio" name="how-tab" id="how-tab-04" class="how-radio">
+    <input type="radio" name="how-tab" id="how-tab-05" class="how-radio">
+    <input type="radio" name="how-tab" id="how-tab-06" class="how-radio">
+
     <div class="how-grid">
-      <div class="how-cell">
+      <label class="how-cell" for="how-tab-01">
         <span class="tag">01&nbsp; Brand &amp; Strategy</span>
         <h3>Position first, produce second</h3>
-        <p>Brand architecture, repositioning, messaging systems, and governance frameworks that keep hundreds of touchpoints coherent across languages, countries, and regulated environments.</p>
-      </div>
-      <div class="how-cell">
+      </label>
+      <label class="how-cell" for="how-tab-02">
         <span class="tag">02&nbsp; Systems &amp; MarTech</span>
         <h3>Build the infrastructure layer</h3>
-        <p>Platform discovery, vendor selection and contract negotiation, and full-lifecycle implementation (HubSpot, CMS, DAM, automation) with the governance and training that make adoption stick.</p>
-      </div>
-      <div class="how-cell ai-cell">
+      </label>
+      <label class="how-cell ai-cell" for="how-tab-03">
         <span class="tag">03&nbsp; AI Transformation</span>
         <h3>Make AI operational, not theatrical</h3>
-        <p>Hands-on practitioner across generative and agentic tools, integrating AI into creative production, content workflows, and analysis, learned the way I've learned every platform shift since 2003: hands first, then systematized. Supplemented by Stanford Continuing Studies coursework in Agentic AI (2026).</p>
-      </div>
-      <div class="how-cell">
+      </label>
+      <label class="how-cell" for="how-tab-04">
         <span class="tag">04&nbsp; Change Leadership</span>
         <h3>Lead people through change</h3>
-        <p>Managed leaders and officers through reorganizations, platform migrations, and new-tool adoption, pairing executive communication with the training and governance that make change stick, increasingly grounded in the neuroscience of how people actually respond to change (Stanford Continuing Studies, in progress). Co-founded workplace programs that changed how the company engaged its own people.</p>
-      </div>
-      <div class="how-cell">
+      </label>
+      <label class="how-cell" for="how-tab-05">
         <span class="tag">05&nbsp; Measurement</span>
         <h3>Instrument everything</h3>
-        <p>Performance dashboards, KPI frameworks, and ROI reporting to senior leadership: measurement built first, then used to make resource decisions, not to decorate a slide.</p>
-      </div>
-      <div class="how-cell">
+      </label>
+      <label class="how-cell" for="how-tab-06">
         <span class="tag">06&nbsp; Global Perspective</span>
         <h3>Cross-border by default</h3>
-        <p>Lived and worked in France, led teams across the U.S. and Germany, expanded platforms into Canada and into Spanish. Professionally fluent in French.</p>
-      </div>
+      </label>
+    </div>
+
+    <div class="how-panels">
+      <p class="how-panel" id="panel-01">Brand architecture, repositioning, and governance frameworks that keep hundreds of touchpoints coherent across languages and regulated environments.</p>
+      <p class="how-panel" id="panel-02">Platform discovery, vendor selection, and full-lifecycle implementation (HubSpot, CMS, DAM, automation) with the governance that makes adoption stick.</p>
+      <p class="how-panel" id="panel-03">Hands-on practitioner across generative and agentic tools, learned the way I've learned every platform shift since 2003: hands first, then systematized, supplemented by Stanford Continuing Studies coursework in Agentic AI (2026).</p>
+      <p class="how-panel" id="panel-04">Managed leaders and officers through reorganizations, platform migrations, and new-tool adoption, pairing executive communication with the governance that makes change stick, increasingly grounded in the neuroscience of how people actually respond to change (Stanford Continuing Studies, in progress).</p>
+      <p class="how-panel" id="panel-05">Performance dashboards, KPI frameworks, and ROI reporting to senior leadership: measurement built first, then used to make resource decisions, not to decorate a slide.</p>
+      <p class="how-panel" id="panel-06">Lived and worked in France, led teams across the U.S. and Germany, and expanded platforms into Canada and Spanish-language markets. Professional fluency in French.</p>
     </div>
   </div>
 </section>
@@ -513,11 +613,12 @@ footer{
     <div class="about-grid">
       <div>
         <p>I've spent my career in the space between <b>brand craft and operational systems</b>: a designer by training who kept asking why the work was so hard to produce, and then fixing that instead.</p>
-        <p>That instinct has an origin: a 1998 co-op at a five-person startup in <b>Paris</b> (rue de Rivoli, across from the Louvre, sharing a floor with Devarrieux-Villaret's Disney, Mercedes, and Swatch teams while I ran press coverage and translation for our own tourism-industry client), where I watched planning, storytelling, visuals, events, and distribution operate as one machine. I've been building versions of that machine ever since (<b>part atelier, part operating system</b>), starting back when websites were hand-coded HTML because there was no other kind.</p>
+        <p>That instinct has an origin: a 1998 co-op at a five-person startup in <b>Paris</b>, on the rue de Rivoli across from the Louvre, watching planning, storytelling, visuals, events, and distribution operate as one machine. I've been building versions of that machine ever since (<b>part atelier, part operating system</b>), starting when websites were hand-coded HTML because there was no other kind.</p>
         <p>It carried me through a seventeen-year run at <a class="inline-link" href="https://www.usli.com/" target="_blank" rel="noopener"><b>USLI, a Berkshire Hathaway company</b></a>, rising from Director of Graphics to Second Vice President, Director of Brand Strategy, preceded by global marketing leadership at <a class="inline-link" href="https://www.scheer-americas.com/?noredir=1" target="_blank" rel="noopener"><b>IDS Scheer</b></a> during aggressive international M&amp;A, and UX work at <a class="inline-link" href="https://investor.vanguard.com/" target="_blank" rel="noopener"><b>Vanguard</b></a>.</p>
+        <p>Alongside all of it, I kept building things by hand: ten years freelancing in brand identity, web design, and portrait, product, and environmental photography (Tom Pepe Design, 2008 to 2018), then <b>Le Fussy Macaron</b>, a small-batch bakery I built in partnership and ran for four years during the pandemic, brand identity through production, packaging, and farm-market retail, start to finish.</p>
         <p>Since 2025, my independent work has focused on <b>AI marketing transformation</b>, the newest chapter in a career-long pattern: master the new capability, then build the system that makes it everyone's.</p>
-        <p>The through-line outside the org chart is the same as inside it, <b>developing people</b>: mentoring American and French college students and co-workers, teaching photography and serving on the advisory council at Philadelphia's Mercy Career &amp; Technical High School, tutoring young readers, and co-founding workplace programs, USLI Pride and Kaleidoscope, that made the culture more human.</p>
-        <p>The rest of the time, you'll find me playing fetch with Gumbo, my pocket pit; photographing flowers for a coffee-table book that may never admit it's finished; or on a tennis court.</p>
+        <p>The through-line outside the org chart is the same as inside it, <b>developing people</b>: mentoring students and co-workers, teaching photography, serving on Mercy Career &amp; Technical High School's advisory council, tutoring young readers, and co-founding two workplace programs, Pride and Kaleidoscope.</p>
+        <p>The rest of the time, you'll find me playing fetch with Gumbo, my pocket pit; photographing flowers; or on a tennis court.</p>
       </div>
       <div>
         <figure class="portrait">
@@ -527,16 +628,26 @@ footer{
           <figcaption>Tom Pepe · 2026 · Photograph · backdrop composited with AI</figcaption>
         </figure>
         <div class="timeline">
+        <input type="radio" name="tl-tab" id="tl-tab-career" class="tl-radio" checked>
+        <input type="radio" name="tl-tab" id="tl-tab-education" class="tl-radio">
+        <div class="timeline-tabs">
+          <label for="tl-tab-career">Career</label>
+          <label for="tl-tab-education">Education</label>
+        </div>
+        <div class="tl-group tl-career">
         <div class="t-row"><span class="yrs">2025–Present</span><div class="role"><b>Independent Projects</b><span>AI Marketing Transformation</span></div></div>
         <div class="t-row"><span class="yrs">2009–2026</span><div class="role"><a class="inline-link" href="https://www.usli.com/" target="_blank" rel="noopener"><b>USLI, A Berkshire Hathaway Company</b></a><span>Second Vice President (2014–2026) &amp; Assistant Vice President (2009–2014): Senior Brand Marketing Coordinator; Director of Brand Strategy; Director of Design; Director of Design &amp; Social Media; Director of Graphics · Wayne, PA</span></div></div>
         <div class="t-row"><span class="yrs">2008</span><div class="role"><a class="inline-link" href="https://investor.vanguard.com/" target="_blank" rel="noopener"><b>Vanguard</b></a><span>Interaction Designer, User-Centered Design · Malvern, PA</span></div></div>
         <div class="t-row"><span class="yrs">2003–2008</span><div class="role"><a class="inline-link" href="https://www.scheer-americas.com/?noredir=1" target="_blank" rel="noopener"><b>IDS Scheer, Consulting &amp; Software</b></a><span>Global Web Marketing Manager · U.S. &amp; Germany</span></div></div>
         <div class="t-row"><span class="yrs">2001–2003</span><div class="role"><b>United AG Producers</b><span>Director of Multimedia · Plymouth Meeting, PA</span></div></div>
         <div class="t-row"><span class="yrs">1998–1999</span><div class="role"><b>Avence Multimedia</b><span>Public Relations Assistant &amp; Translator · Paris, France</span></div></div>
-        <div class="t-row"><span class="yrs">Education</span><div class="role"><b>Millersville University of Pennsylvania</b><span>B.S., Communication Studies &amp; French</span></div></div>
-        <div class="t-row"><span class="yrs"></span><div class="role"><b>Université Lumière Lyon II</b><span>Certificate, French Language &amp; History · Lyon, France</span></div></div>
-        <div class="t-row"><span class="yrs">2025</span><div class="role"><b>HubSpot Academy</b><span>Digital Marketing Certification</span></div></div>
+        </div>
+        <div class="tl-group tl-education">
         <div class="t-row"><span class="yrs">2026</span><div class="role"><b>Stanford Continuing Studies</b><span>Agentic AI coursework · Neuroscience of Leadership &amp; Emotional Mastery (in progress)</span></div></div>
+        <div class="t-row"><span class="yrs">2025</span><div class="role"><b>HubSpot Academy</b><span>Digital Marketing Certification</span></div></div>
+        <div class="t-row"><span class="yrs"></span><div class="role"><b>Millersville University of Pennsylvania</b><span>B.S., Communication Studies &amp; French</span></div></div>
+        <div class="t-row"><span class="yrs"></span><div class="role"><b>Université Lumière Lyon II</b><span>Certificate, French Language &amp; History · Lyon, France</span></div></div>
+        </div>
         </div>
       </div>
     </div>
