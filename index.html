@@ -198,12 +198,61 @@ h2 i{color:var(--viridian)}
 #how-tab-05:checked ~ .how-panels #panel-05,
 #how-tab-06:checked ~ .how-panels #panel-06{display:block}
 .framework{background:var(--mist)}
-.framework-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(15,91,78,.22);border:1px solid rgba(15,91,78,.22)}
-.framework-step{background:var(--ivory);padding:30px 24px;min-height:220px}
-.framework-step .icon{display:block;width:40px;height:40px;margin-bottom:16px}
-.framework-step .n{font-family:var(--mono);font-size:11px;color:var(--brass-text);letter-spacing:.12em}
-.framework-step h3{font-family:var(--display);font-size:21px;line-height:1.2;margin:16px 0 10px;color:var(--viridian)}
-.framework-step p{font-size:14px;line-height:1.6;color:var(--silhouette)}
+.framework-rail-wrap{position:relative}
+.framework-radio{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
+.framework-rail{display:grid;grid-template-columns:repeat(5,1fr);position:relative;gap:0;padding:0 10px}
+.framework-rail::before{content:"";position:absolute;left:10%;right:10%;top:34px;height:1px;background:rgba(15,91,78,.28);z-index:0}
+.framework-tab{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;cursor:pointer;padding:0 12px 18px;color:var(--silhouette);transition:color .2s ease,transform .2s ease}
+.framework-tab:hover{color:var(--viridian);transform:translateY(-2px)}
+.framework-tab .icon-wrap{width:68px;height:68px;border-radius:50%;display:grid;place-items:center;background:var(--ivory);border:1px solid rgba(15,91,78,.24);box-shadow:0 0 0 8px var(--mist);transition:background .2s ease,border-color .2s ease,box-shadow .2s ease}
+.framework-tab .icon{display:block;width:38px;height:38px}
+.framework-tab .n{font-family:var(--mono);font-size:11px;color:var(--brass-text);letter-spacing:.12em;margin-top:14px}
+.framework-tab .label{font-family:var(--display);font-size:18px;line-height:1.15;color:inherit;margin-top:5px}
+#framework-tab-01:checked ~ .framework-rail label[for="framework-tab-01"],
+#framework-tab-02:checked ~ .framework-rail label[for="framework-tab-02"],
+#framework-tab-03:checked ~ .framework-rail label[for="framework-tab-03"],
+#framework-tab-04:checked ~ .framework-rail label[for="framework-tab-04"],
+#framework-tab-05:checked ~ .framework-rail label[for="framework-tab-05"]{color:var(--viridian);transform:translateY(-2px)}
+#framework-tab-01:checked ~ .framework-rail label[for="framework-tab-01"] .icon-wrap,
+#framework-tab-02:checked ~ .framework-rail label[for="framework-tab-02"] .icon-wrap,
+#framework-tab-03:checked ~ .framework-rail label[for="framework-tab-03"] .icon-wrap,
+#framework-tab-04:checked ~ .framework-rail label[for="framework-tab-04"] .icon-wrap,
+#framework-tab-05:checked ~ .framework-rail label[for="framework-tab-05"] .icon-wrap{background:var(--viridian-surface);border-color:var(--viridian-surface);box-shadow:0 0 0 8px var(--mist),0 8px 18px rgba(15,91,78,.16)}
+.framework-tab .icon-wrap{position:relative}
+.framework-tab .icon.active-icon{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0;transition:opacity .2s ease}
+#framework-tab-01:checked ~ .framework-rail label[for="framework-tab-01"] .icon.active-icon,
+#framework-tab-02:checked ~ .framework-rail label[for="framework-tab-02"] .icon.active-icon,
+#framework-tab-03:checked ~ .framework-rail label[for="framework-tab-03"] .icon.active-icon,
+#framework-tab-04:checked ~ .framework-rail label[for="framework-tab-04"] .icon.active-icon,
+#framework-tab-05:checked ~ .framework-rail label[for="framework-tab-05"] .icon.active-icon{opacity:1}
+#framework-tab-01:checked ~ .framework-rail label[for="framework-tab-01"] .icon.base-icon,
+#framework-tab-02:checked ~ .framework-rail label[for="framework-tab-02"] .icon.base-icon,
+#framework-tab-03:checked ~ .framework-rail label[for="framework-tab-03"] .icon.base-icon,
+#framework-tab-04:checked ~ .framework-rail label[for="framework-tab-04"] .icon.base-icon,
+#framework-tab-05:checked ~ .framework-rail label[for="framework-tab-05"] .icon.base-icon{opacity:0}
+.framework-detail{margin-top:18px;background:var(--ivory);border:1px solid rgba(15,91,78,.22);padding:28px 32px;min-height:128px;display:flex;align-items:center}
+.framework-panel{display:none;grid-template-columns:90px 1fr;gap:24px;align-items:start;width:100%}
+.framework-panel .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--brass-text);padding-top:5px}
+.framework-panel h3{font-family:var(--display);font-size:24px;line-height:1.2;color:var(--viridian);margin-bottom:8px}
+.framework-panel p{font-size:15px;line-height:1.65;color:var(--silhouette);max-width:74ch}
+#framework-tab-01:checked ~ .framework-detail #framework-panel-01,
+#framework-tab-02:checked ~ .framework-detail #framework-panel-02,
+#framework-tab-03:checked ~ .framework-detail #framework-panel-03,
+#framework-tab-04:checked ~ .framework-detail #framework-panel-04,
+#framework-tab-05:checked ~ .framework-detail #framework-panel-05{display:grid}
+
+
+/* Show the active artwork on hover/focus as well as after selection. */
+.framework-tab:hover .icon.active-icon,
+.framework-tab:focus-within .icon.active-icon{opacity:1}
+.framework-tab:hover .icon.base-icon,
+.framework-tab:focus-within .icon.base-icon{opacity:0}
+.framework-tab:hover .icon-wrap,
+.framework-tab:focus-within .icon-wrap{
+  background:var(--viridian-surface);
+  border-color:var(--viridian-surface);
+  box-shadow:0 0 0 8px var(--mist),0 8px 18px rgba(15,91,78,.16)
+}
 
 /* ---------- about: the silhouette room ---------- */
 .about{background:var(--silhouette);color:var(--parchment)}
@@ -278,8 +327,17 @@ footer{
   .case-detail{grid-template-columns:1fr;gap:22px;padding-left:0}
   .case-metrics{flex-direction:row;flex-wrap:wrap;gap:34px}
   .how-grid{grid-template-columns:1fr}
-  .framework-grid{grid-template-columns:1fr}
-  .framework-step{min-height:0}
+  .framework-rail{grid-template-columns:1fr;padding:0}
+  .framework-rail::before{left:33px;right:auto;top:34px;bottom:34px;width:1px;height:auto}
+  .framework-tab{display:grid;grid-template-columns:68px 38px 1fr;align-items:center;text-align:left;padding:0 0 10px;gap:10px}
+  .framework-tab:hover,#framework-tab-01:checked ~ .framework-rail label[for="framework-tab-01"],#framework-tab-02:checked ~ .framework-rail label[for="framework-tab-02"],#framework-tab-03:checked ~ .framework-rail label[for="framework-tab-03"],#framework-tab-04:checked ~ .framework-rail label[for="framework-tab-04"],#framework-tab-05:checked ~ .framework-rail label[for="framework-tab-05"]{transform:none}
+  .framework-tab .icon-wrap{grid-row:1;grid-column:1;width:58px;height:58px;box-shadow:0 0 0 7px var(--mist)}
+  .framework-tab .icon{width:32px;height:32px}
+  .framework-tab .n{grid-column:2;margin-top:0}
+  .framework-tab .label{grid-column:3;margin-top:0;font-size:19px}
+  .framework-detail{margin-top:14px;padding:24px;min-height:0}
+  .framework-panel{grid-template-columns:1fr;gap:8px}
+  .framework-panel .kicker{padding-top:0}
   .t-row{grid-template-columns:1fr;gap:6px;padding:16px 0}
   .t-row .yrs{padding-top:0}
   .thesis-cols,.about-grid{grid-template-columns:1fr;gap:42px}
@@ -359,8 +417,11 @@ footer{
       <p class="thesis-main">Craft earns the brand. <i>Systems make it compound.</i></p>
     </div>
     <div class="thesis-side">
-      <p>Most marketing organizations rebuild the same campaign over and over. The teams I've led stopped doing that: we built platforms, automated the repeatable work, governed the brand centrally, and measured everything, so creative energy went to the problems that actually deserved it.</p>
-      <p>AI hasn't changed that thesis. It has accelerated it. The advantage was never knowing more tools than the next marketer. It's holding four disciplines at once: <b>marketing strategy, operational design, executive communication, and change leadership.</b> Tools get commoditized in a quarter. That combination doesn't.</p>
+      <p>Strong marketing should not depend on rebuilding the same work. I design the platforms, automation, governance, and measurement that turn individual campaigns into scalable organizational capability.</p>
+<p>AI makes that operating discipline more valuable, not less. Tools will change. The advantage lies in connecting strategy, systems, leadership, and adoption so the organization changes with them.</p>
+
+<!--LONGER FORMAT - Most marketing organizations rebuild the same campaign over and over. The teams I've led stopped doing that: we built platforms, automated the repeatable work, governed the brand centrally, and measured everything, so creative energy went to the problems that actually deserved it.</p>
+      <p>AI hasn't changed that thesis. It has accelerated it. The advantage was never knowing more tools than the next marketer. It's holding four disciplines at once: <b>marketing strategy, operational design, executive communication, and change leadership.</b> Tools get commoditized in a quarter. That combination doesn't.</p> -->
     </div>
   </div>
 </section>
@@ -371,12 +432,28 @@ footer{
       <h2>How I make it <i>compound</i></h2>
       <p class="tag">The five-step method behind every case below</p>
     </div>
-    <div class="framework-grid">
-      <div class="framework-step"><img class="icon" src="icon-01-see.webp" alt="Magnifying glass: seeing the fragmentation" width="160" height="160" loading="lazy"><span class="n">01</span><h3>See the fragmentation</h3><p>Find where brand, content, and customer experience have drifted into disconnected efforts: different tools, different owners, no shared system.</p></div>
-      <div class="framework-step"><img class="icon" src="icon-02-design.webp" alt="Drafting compass: designing the system" width="160" height="160" loading="lazy"><span class="n">02</span><h3>Design the system</h3><p>Establish the governance, platform architecture, and ownership model before a single campaign gets built on top of it.</p></div>
-      <div class="framework-step"><img class="icon" src="icon-03-build.webp" alt="Hand plane: building the experience" width="160" height="160" loading="lazy"><span class="n">03</span><h3>Build the experience</h3><p>Turn the system into the actual work: identity, platforms, content, and the customer- and partner-facing journeys people touch.</p></div>
-      <div class="framework-step"><img class="icon" src="icon-04-mobilize.webp" alt="Metronome: mobilizing the team" width="160" height="160" loading="lazy"><span class="n">04</span><h3>Mobilize the team</h3><p>Align leadership, train the people who'll run it, and communicate the change until the new way of working is just the way of working.</p></div>
-      <div class="framework-step"><img class="icon" src="icon-05-measure.webp" alt="Calipers: measuring and refining" width="160" height="160" loading="lazy"><span class="n">05</span><h3>Measure and refine</h3><p>Instrument what matters, use the evidence to adjust the system, and let performance, not opinion, decide what changes next.</p></div>
+    <div class="framework-rail-wrap">
+      <input type="radio" name="framework-tab" id="framework-tab-01" class="framework-radio" checked>
+      <input type="radio" name="framework-tab" id="framework-tab-02" class="framework-radio">
+      <input type="radio" name="framework-tab" id="framework-tab-03" class="framework-radio">
+      <input type="radio" name="framework-tab" id="framework-tab-04" class="framework-radio">
+      <input type="radio" name="framework-tab" id="framework-tab-05" class="framework-radio">
+
+      <div class="framework-rail" role="tablist" aria-label="Five-step method">
+        <label class="framework-tab" for="framework-tab-01"><span class="icon-wrap"><img class="icon base-icon" src="icon-01-see.webp" alt="" width="160" height="160" loading="lazy"><img class="icon active-icon" src="icon-01-see-active.webp" alt="" width="160" height="160" loading="lazy"></span><span class="n">01</span><span class="label">See</span></label>
+        <label class="framework-tab" for="framework-tab-02"><span class="icon-wrap"><img class="icon base-icon" src="icon-02-design.webp" alt="" width="160" height="160" loading="lazy"><img class="icon active-icon" src="icon-02-design-active.webp" alt="" width="160" height="160" loading="lazy"></span><span class="n">02</span><span class="label">Design</span></label>
+        <label class="framework-tab" for="framework-tab-03"><span class="icon-wrap"><img class="icon base-icon" src="icon-03-build.webp" alt="" width="160" height="160" loading="lazy"><img class="icon active-icon" src="icon-03-build-active.webp" alt="" width="160" height="160" loading="lazy"></span><span class="n">03</span><span class="label">Build</span></label>
+        <label class="framework-tab" for="framework-tab-04"><span class="icon-wrap"><img class="icon base-icon" src="icon-04-mobilize.webp" alt="" width="160" height="160" loading="lazy"><img class="icon active-icon" src="icon-04-mobilize-active.webp" alt="" width="160" height="160" loading="lazy"></span><span class="n">04</span><span class="label">Mobilize</span></label>
+        <label class="framework-tab" for="framework-tab-05"><span class="icon-wrap"><img class="icon base-icon" src="icon-05-measure.webp" alt="" width="160" height="160" loading="lazy"><img class="icon active-icon" src="icon-05-measure-active.webp" alt="" width="160" height="160" loading="lazy"></span><span class="n">05</span><span class="label">Measure</span></label>
+      </div>
+
+      <div class="framework-detail" aria-live="polite">
+        <div class="framework-panel" id="framework-panel-01"><span class="kicker">Step 01</span><div><h3>See the fragmentation</h3><p>Find where tools, ownership, brand, and customer experience have drifted into disconnected efforts.</p></div></div>
+        <div class="framework-panel" id="framework-panel-02"><span class="kicker">Step 02</span><div><h3>Design the system</h3><p>Define the governance, platform architecture, and ownership model before building campaigns on top of it.</p></div></div>
+        <div class="framework-panel" id="framework-panel-03"><span class="kicker">Step 03</span><div><h3>Build the experience</h3><p>Turn the system into the platforms, content, identity, and journeys customers and partners actually use.</p></div></div>
+        <div class="framework-panel" id="framework-panel-04"><span class="kicker">Step 04</span><div><h3>Mobilize the team</h3><p>Align leadership, train the people running the system, and make the new way of working stick.</p></div></div>
+        <div class="framework-panel" id="framework-panel-05"><span class="kicker">Step 05</span><div><h3>Measure and refine</h3><p>Instrument what matters and use performance, not opinion, to determine what changes next.</p></div></div>
+      </div>
     </div>
   </div>
 </section>
