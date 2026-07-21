@@ -1,39 +1,29 @@
 Tom Pepe — personal brand site
-Deployment package · July 20, 2026 (v72)
+Deployment package · July 21, 2026 (v76)
 
 IMPORTANT: open index.html from INSIDE this unzipped folder.
 
-NEW IN v72: Framework rail's active-tab icon color now uses real
-dedicated brass icon assets instead of a CSS filter trick. Tom's Gemini-
-generated "-active" icons had stray sparkle-mark artifacts he wanted
-removed. Root cause of a rougher-than-expected cleanup: the source
-files are RGBA with genuine transparency, and treating them as flat RGB
-first exposed meaningless garbage color data stored under the
-transparent pixels — full pipeline redone using the real alpha channel,
-with connected-component analysis isolating each tool's true silhouette
-from small disconnected sparkle marks. Output icons are solid brass on
-a transparent background, verified via simulated composite against the
-actual viridian-surface tab color they sit on. Two of five icons matched
-their base counterparts' aspect ratio exactly (0.00 and 0.01 difference),
-confirming the pipeline introduces no distortion; the other three show
-expected pose differences from being freshly regenerated art, not
-processing errors.
+NEW IN v76: portrait replaced with the final hawk-toile version — camel
+sport coat, white shirt, deep viridian wallpaper with two red-tailed
+hawks, water, and florals. This ties the portrait directly into the
+site's existing hawk/mark iconography (Le Fil, the seal) in a way the
+previous two portrait backgrounds didn't. Square-cropped to 900x900,
+alt text updated to match, og-image.jpg regenerated.
 
-Base icon + active icon both load per tab; CSS opacity-crossfades
-between them on the same zero-JS radio-driven mechanism used everywhere
-else on the site. Verified via real computed opacity values (1 on the
-active tab, 0 on all others) before shipping, not just visual read.
+Note: the final toile pattern is full-color, not the strict monochrome-
+plus-umber-accent treatment originally requested — Tom reviewed and
+approved this version as final regardless ("let's roll with this one").
 
-Prior: thesis shortened + framework rail interaction + About timeline
-updates, merged from a ChatGPT-assisted session (v71).
+portrait-tom-pepe-2026-f.webp (previous portrait) is no longer
+referenced — safe to delete from the repo.
 
 Contents
 --------
 index.html                                  the site
 og-image.jpg                                social share preview image
+portrait-tom-pepe-2026-g.webp               hero portrait, About section (NEW — final)
 LICENSE                                     all-rights-reserved notice
 favicon.ico                                 tab mark (hawk-eye seal)
-portrait-tom-pepe-2026-d.webp               hero portrait, About section
 hawk-eye-seal.webp                          closing seal above the footer (animated once)
 texture-viridian-weave-v3.webp              thesis panel background texture
 plate-key.webp                              Case 01 — Digital Broker Experience
@@ -51,6 +41,7 @@ icon-01-see-active.webp … -05-measure-active.webp  framework rail icons (activ
 
 AFTER DEPLOYING: test the social preview at
 https://www.linkedin.com/post-inspector/ and https://cards-dev.twitter.com/validator
+(use the refresh button, since a previous portrait was already cached).
 
 Hosting
 -------
